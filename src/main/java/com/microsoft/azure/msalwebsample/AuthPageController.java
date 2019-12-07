@@ -21,12 +21,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Controller exposing application endpoints
  */
-@Controller
+@RestController
+@RequestMapping("/")
 public class AuthPageController {
 
     @Autowired
@@ -37,19 +39,62 @@ public class AuthPageController {
         return "index";
     }
 
-    @RequestMapping("/msal4jsample/secure/aad")
-    public ModelAndView securePage(HttpServletRequest httpRequest) throws ParseException {
-        ModelAndView mav = new ModelAndView("auth_page");
+    //Vamos a redireccionar
 
-        setAccountInfo(mav, httpRequest);
+    @RequestMapping("/")
+    public ModelAndView  homepage2(HttpServletRequest httpRequest, HttpServletResponse response){
+
+
+        if(httpRequest.isRequestedSessionIdValid()) {
+            //Si quitas de la carpeta templates el index en automatico se ira el redirect al index
+            // de la carpetita static, pero puedes poner practiamente cuanlquier pagina en el redirect
+
+            ModelAndView mav = new ModelAndView("redirect:/index.html");
+            return mav;
+        }else{
+            ModelAndView mav = new ModelAndView("/indexooo.html");
+            return mav;
+        }
+
+    }
+    @RequestMapping("/msal4jsample/secure/aad/dos")
+    public ModelAndView securePage(HttpServletRequest httpRequest) throws ParseException {
+        ModelAndView mav = new ModelAndView("/dos/index");
+
+      // setAccountInfo(mav, httpRequest);
 
         return mav;
     }
+//ESTE ES EL QUE ME AUTODIRIGE A LA VERGA
+    @RequestMapping("/msal4jsample/secure/aad")
+    public ModelAndView securePage2(HttpServletRequest httpRequest) throws ParseException {
+     //   ModelAndView mav = new ModelAndView("auth_page");
+        ModelAndView mav = new ModelAndView("redirect:/index.html");
+
+      //  setAccountInfo(mav, httpRequest);
+
+
+
+        return mav;
+    }
+
+    @RequestMapping("/msal4jsample/secure/aad/tres")
+    public String secureTres() throws ParseException {
+        ModelAndView mav = new ModelAndView("auth_page");
+
+
+
+
+
+         return"Ya me canse sumamente molesto";
+    }
+
 
     @RequestMapping("/msal4jsample/sign_out")
     public void signOut(HttpServletRequest httpRequest, HttpServletResponse response) throws IOException {
 
         httpRequest.getSession().invalidate();
+
 
         String endSessionEndpoint = "https://login.microsoftonline.com/common/oauth2/v2.0/logout";
 
