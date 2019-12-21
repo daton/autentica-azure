@@ -35,10 +35,21 @@ public class AuthPageController {
     AuthHelper authHelper;
 
     @RequestMapping("/msal4jsample")
-    public String homepage(){
-        return "index";
-    }
+    public ModelAndView  homepage(HttpServletRequest httpRequest, HttpServletResponse response){
 
+
+        if(httpRequest.isRequestedSessionIdValid()) {
+            //Si quitas de la carpeta templates el index en automatico se ira el redirect al index
+            // de la carpetita static, pero puedes poner practiamente cuanlquier pagina en el redirect
+
+            ModelAndView mav = new ModelAndView("redirect:/index.html");
+            return mav;
+        }else{
+            ModelAndView mav = new ModelAndView("/indexooo.html");
+            return mav;
+        }
+
+    }
     //Vamos a redireccionar
 
     @RequestMapping("/")
@@ -98,7 +109,7 @@ public class AuthPageController {
 
         String endSessionEndpoint = "https://login.microsoftonline.com/common/oauth2/v2.0/logout";
 
-        String redirectUrl = "http://localhost:8080/msal4jsample/";
+        String redirectUrl = "https://daton.herokuapp.com/msal4jsample/";
         response.sendRedirect(endSessionEndpoint + "?post_logout_redirect_uri=" +
                 URLEncoder.encode(redirectUrl, "UTF-8"));
     }
