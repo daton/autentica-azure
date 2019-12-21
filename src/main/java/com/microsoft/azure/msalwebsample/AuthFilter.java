@@ -42,8 +42,8 @@ public class AuthFilter implements Filter {
                 String queryStr = httpRequest.getQueryString();
                 String fullUrl = currentUri + (queryStr != null ? "?" + queryStr : "");
 
-                // exclude home page
-                if(excludedUrls.contains(path)){
+                // excluimos la homepage y la api de lo que es la autenticación
+                if(excludedUrls.contains(path)||path.startsWith("/api")){
                     chain.doFilter(request, response);
                     return;
                 }

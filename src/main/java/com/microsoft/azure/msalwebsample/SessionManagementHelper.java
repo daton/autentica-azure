@@ -21,7 +21,7 @@ class SessionManagementHelper {
 
     static final String STATE = "state";
     private static final String STATES = "states";
-    private static final Integer STATE_TTL = 3600;
+    private static final Integer STATE_TTL = 7200;
 
     static final String FAILED_TO_VALIDATE_MESSAGE = "Failed to validate data received from Authorization service - ";
 

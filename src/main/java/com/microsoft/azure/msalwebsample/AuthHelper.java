@@ -169,7 +169,7 @@ class AuthHelper {
                 "&prompt=select_account" +
                 "&state=" + state
                 + "&nonce=" + nonce;
-
+        System.out.println("ahhhhhhhhhhhhhhhhhhhhh "+authorizationCodeUrl);
         return authorizationCodeUrl;
     }
 

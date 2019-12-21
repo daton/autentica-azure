@@ -20,3 +20,4 @@ public class MsalWebSampleApplication extends SpringBootServletInitializer {
 		return builder.sources(MsalWebSampleApplication.class);
 	}
 }
+

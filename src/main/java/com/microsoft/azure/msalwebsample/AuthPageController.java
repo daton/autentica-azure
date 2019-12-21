@@ -71,7 +71,7 @@ public class AuthPageController {
      //   ModelAndView mav = new ModelAndView("auth_page");
         ModelAndView mav = new ModelAndView("redirect:/index.html");
 
-      //  setAccountInfo(mav, httpRequest);
+        setAccountInfo(mav, httpRequest);
 
 
 
@@ -181,6 +181,7 @@ public class AuthPageController {
         IAuthenticationResult auth = SessionManagementHelper.getAuthSessionObject(httpRequest);
 
         String tenantId = JWTParser.parse(auth.idToken()).getJWTClaimsSet().getStringClaim("tid");
+      System.out.println("EXPIRAAAAAAAAAAAAAA "+ auth.expiresOnDate().toString());
 
         model.addObject("tenantId", tenantId);
         model.addObject("account", SessionManagementHelper.getAuthSessionObject(httpRequest).account());

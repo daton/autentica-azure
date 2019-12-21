@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.UnknownHostException;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 
 public class ControladorHola {
-    @GetMapping("/msal4jsample/secure/aad/cuatro")
+    @GetMapping("/hola")
     public String hola(){
         return "Hola mundo cuatro";
     }
-    @GetMapping("//msal4jsample/secure/aad")
+    @GetMapping("/malo")
     public String hola2() throws UnknownHostException {
         //   String ip = InetAddress.getLocalHost().getHostAddress();ssss
 
