@@ -34,7 +34,7 @@ public class AuthPageController {
     @Autowired
     AuthHelper authHelper;
 
-    @RequestMapping("/msal4jsample")
+    //@RequestMapping("/msal4jsample")
     public ModelAndView  homepage(HttpServletRequest httpRequest, HttpServletResponse response){
 
 
