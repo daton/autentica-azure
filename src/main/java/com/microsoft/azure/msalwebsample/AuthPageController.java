@@ -109,7 +109,7 @@ public class AuthPageController {
 
         String endSessionEndpoint = "https://login.microsoftonline.com/common/oauth2/v2.0/logout";
 
-        String redirectUrl = "https://daton.herokuapp.com/msal4jsample/";
+        String redirectUrl = "https://daton.herokuapp.com/";
         response.sendRedirect(endSessionEndpoint + "?post_logout_redirect_uri=" +
                 URLEncoder.encode(redirectUrl, "UTF-8"));
     }
